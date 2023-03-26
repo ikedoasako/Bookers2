@@ -13,6 +13,7 @@
   <body>
     <header>
       <% if user_signed_in? %>
+      <!--ログインするまえ-->
         <span>
           <%= link_to "Home", user_path(current_user.id) %>
         </span>
@@ -26,6 +27,7 @@
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </span>
       <% else %>
+      <!--ログインしたあと-->
          <span>
           <%= link_to "Home", root_path %>
         </span>
