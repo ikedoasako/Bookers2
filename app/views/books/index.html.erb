@@ -6,10 +6,11 @@
         <table>
           <tr>
             <th>name</th>
-            <th></th>
+            <th><%= @user.name %></th>
           </tr>
           <tr>
             <th>introducution</th>
+            <th><%= @user.introduction %></th>
           </tr>
         </table>
       <h2>New Book</h2>
@@ -42,7 +43,7 @@
           <% @books.each do |book| %>
             <tr>
               <td><%= image_tag book.user.get_profile_image(70,70) %></td>
-              <td><%= @user.name %></td>
+              <td><!--%= book.user.name %--></td>
               <td><%= link_to book.title, book_path(book.id)%></td>
               <td><%= book.opinion %></td>
             </tr>
