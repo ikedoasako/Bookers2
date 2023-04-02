@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def index
@@ -17,14 +18,14 @@ class UsersController < ApplicationController
     if @user.update(user_params)
         flash[:notice] = "successfully"
         redirect_to user_path(@user.id)
-      else
+    else
         render :edit
-      end
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :get_profile_image, :introducution)
+    params.require(:user).permit(:name, :get_profile_image, :introduction)
   end
 end

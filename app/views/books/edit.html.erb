@@ -1,4 +1,12 @@
 <div class="container" >
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @book.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
   <div class= "row">
     <div class= "col-auto">
       <h1>Editing Book</h1>
