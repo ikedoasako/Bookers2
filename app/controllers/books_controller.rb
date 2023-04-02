@@ -24,10 +24,11 @@ class BooksController < ApplicationController
 
     def edit
       @book = Book.find(params[:id])
+      @book.user_id = current_user.id
     end
 
     def update
-      @book = Book.find(paramus[:id])
+      @book = Book.find(params[:id])
       if @book.update(book_params)
         flash[:notice] = "successfully"
         redirect_to book_path(@book.id)

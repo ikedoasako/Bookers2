@@ -15,8 +15,9 @@
     </table>
     <div class="row">
       <a>
-        <%= link_to edit_user_path(current_user.id), class: "btn btn-secondary" %>
+        <%= link_to edit_user_path(current_user.id), class: "btn btn-light" do %>
       <i class="fas fa-user-cog"></i>
+        <% end %>
       </a>
     </div>
     <h2>New Book</h2>
