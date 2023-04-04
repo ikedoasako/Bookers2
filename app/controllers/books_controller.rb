@@ -12,17 +12,13 @@ class BooksController < ApplicationController
 
     def create
       @user = current_user
+      @books = Book.all
       @book = Book.new(book_params)
-      @book =Book.create(content: post_params[:content], title: post_params[:title], user_id: current_user.id)
-      if @book.save
-        redirect_to book_path
-      end
       @book.user_id = current_user.id
       if @book.save
         flash[:notice] = "successfully"
         redirect_to book_path(@book.id)
       else
-        @books = Book.all
         render :index
       end
     end
