@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-before_action :correct_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -8,6 +7,9 @@ before_action :correct_user, only: [:edit, :update]
 
   def edit
     @user = User.find(params[:id])
+    unless current_user.id == @user.id
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def index
@@ -17,6 +19,9 @@ before_action :correct_user, only: [:edit, :update]
 
   def update
     @user = User.find(params[:id])
+    unless correct_user.id == @user.id
+      redirect_to user_path(current_user.id)
+    end
     if @user.update(user_params)
         flash[:notice] = "You have updated user successfully"
         redirect_to user_path(@user.id)
@@ -31,8 +36,4 @@ before_action :correct_user, only: [:edit, :update]
     params.require(:user).permit(:name, :get_profile_image, :introduction)
   end
 
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(user_path) unless @user =- current_user
-  end
 end
