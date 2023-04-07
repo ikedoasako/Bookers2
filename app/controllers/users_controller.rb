@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    unless correct_user.id == @user.id
+    unless current_user.id == @user.id
       redirect_to user_path(current_user.id)
     end
     if @user.update(user_params)
